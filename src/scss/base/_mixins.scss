@@ -1,4 +1,5 @@
 @use 'variables' as v;
+@use 'sass:color';
 
 /** Media Queries **/
 @mixin telefono {
@@ -36,7 +37,7 @@
     display: inline-block;
 
     &:hover {
-        background-color: darken( $bgColor, 10% );
+        background-color: color.adjust($bgColor, $lightness: -10%);
         cursor: pointer;
     }
 }
@@ -49,7 +50,7 @@
 
 @mixin contenedor {
     margin: 0 auto;
-    width: min(95%, 120rem);
+    width: min(95%, 140rem);
     padding: 0 2rem;
 
 }
@@ -71,4 +72,25 @@
     @include headings;
     margin: 6rem 0 3rem 0;
     text-align: center;
+}
+
+@mixin texto-fluido($min, $max) {
+    font-size: clamp($min, -0.8rem + 10vw, $max);
+}
+
+@mixin texto-degradado($inicio, $final) {
+    background: linear-gradient(to right, $inicio, $final);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin logo {
+   color: v.$blanco;
+   margin-bottom: 2rem;
+   text-align: center;
+   
+   @include desktop {
+         margin: 0;
+         text-align: left;
+   }
 }
