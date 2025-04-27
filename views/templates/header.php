@@ -13,7 +13,7 @@
             </a>
         </div>
 
-        <p class="header__texto">Octubre 5-6 - 2023</p>
+        <p class="header__texto">Octubre 05/06/2023</p>
         <p class="header__texto header__texto--modalidad">En linea - Presencial</p>
 
         <a href="/registro" class="header__boton">Comprar pase</a>
