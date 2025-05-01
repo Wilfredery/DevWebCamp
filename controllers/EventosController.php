@@ -6,12 +6,12 @@ use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 
-class DashboardController {
+class EventosController {
     public static function index(Router $router) {
         // isSession();
         // isAuth();
-        $router->render('admin/dashboard/index', [
-            'titulo' => 'Panel de administración',
+        $router->render('admin/eventos/index', [
+            'titulo' => 'Conferencias y workshops',
 
         ]);
     }
