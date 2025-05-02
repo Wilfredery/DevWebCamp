@@ -15,4 +15,14 @@ class PonentesController {
 
         ]);
     }
+
+    public static function crear(Router $router) {
+        // isSession();
+        // isAuth();
+        $alertas = [];
+        $router->render('admin/ponentes/crear', [
+            'titulo' => 'Registrar ponentes',
+            'alertas' => $alertas,
+        ]);
+    }
 }
