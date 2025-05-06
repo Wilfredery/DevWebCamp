@@ -13,11 +13,11 @@
     
     ?>
 
-    <fomr method="POST" action="/admin/ponentes/crear" class="formulario" enctype="multipart/form-data">
+    <form method="POST" action="/admin/ponentes/crear" class="formulario" enctype="multipart/form-data">
 
         <?php include_once __DIR__ . '/formulario.php';  ?>
 
-        <input class="formulario__submit formulario__submit--registrar type="submit"
-        value="Registrar ponente">
-    </fomr>
+        <input class="formulario__submit formulario__submit--registrar" type="submit"
+        value="Registrar">
+    </form>
 </div>

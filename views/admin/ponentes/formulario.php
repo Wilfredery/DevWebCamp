@@ -67,8 +67,6 @@
 
 <fieldset class="formulario__fieldset">
 
-    <legend for="tags_input" class="formulario__legend">informacion extra (separadas por comas)</legend>
-
     <div class="formulario__campo">
 
         <label for="pais" class="formulario__label">Areas de experiencias</label>
@@ -76,6 +74,7 @@
         <input type="text"
         class="formulario__input"
         id="tags_input"
+        name="tags"
         placeholder="Ej Node.js, php, css, laravel, UX/UI"
         >
     </div>
