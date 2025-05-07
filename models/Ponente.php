@@ -16,6 +16,8 @@ class Ponente extends ActiveRecord {
     public $tags;
     public $redes;
 
+    public $imagen_actual;
+
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
@@ -26,6 +28,7 @@ class Ponente extends ActiveRecord {
         $this->imagen = $args['imagen'] ?? '';
         $this->tags = $args['tags'] ?? '';
         $this->redes = $args['redes'] ?? '';
+        $this->imagen_actual = $args['imagen_actual'] ?? ''; // Añadir esta línea
     }
 
     public function validar() {

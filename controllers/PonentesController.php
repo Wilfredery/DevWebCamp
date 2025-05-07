@@ -12,10 +12,13 @@ use Intervention\Image\ImageManagerStatic as Image;
 class PonentesController {
     public static function index(Router $router) {
         // isSession();
-        // isAuth();
+        // isAuth();}
+
+        $ponentes = Ponente::all();
+
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes/conferencistas',
-
+            'ponentes' => $ponentes,
         ]);
     }
 
@@ -74,6 +77,36 @@ class PonentesController {
 
         $router->render('admin/ponentes/crear', [
             'titulo' => 'Registrar ponentes',
+            'alertas' => $alertas,
+            'ponente' => $ponente,
+        ]);
+    }
+
+    public static function editar (Router $router) {
+
+
+        $alertas = [];
+        //validar el ID
+        $id = $_GET['id'];
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+
+        if(!$id) {
+            header('Location: /admin/ponentes');
+        }
+
+        //Obtener el ponente editar
+        $ponente = Ponente::find($id);
+
+        //Si no existe un oponente
+        if(!$ponente) {
+            header('Location: /admin/ponentes');
+        }
+
+        $ponente->imagen_actual = $ponente->imagen;
+
+
+        $router->render('admin/ponentes/editar', [
+            'titulo' => 'Actualizar ponente',
             'alertas' => $alertas,
             'ponente' => $ponente,
         ]);
