@@ -93,7 +93,6 @@
         <input type="text"
         class="formulario__input"
         id="tags_input"
-        name="tags"
         placeholder="Ej Node.js, php, css, laravel, UX/UI"
         >
     </div>
@@ -123,7 +122,7 @@
             class="formulario__input--sociales"
             placeholder="Facebook"
             name="redes[facebook]"
-            value="<?php echo $ponente->facebook ?? ''; ?>"
+            value="<?php echo $redes->facebook ?? ''; ?>"
             >
             </div>
 
@@ -134,14 +133,14 @@
     <div class="formulario__contenedor-icono">
 
         <div class="formulario__icono">
-            <i class="fa-brands fa-x"></i>
+            <i class="fa-brands fa-twitter"></i>
         </div>
 
         <input type="text"
         class="formulario__input--sociales"
         placeholder="x"
-        name="redes[x]"
-        value="<?php echo $ponente->x ?? ''; ?>"
+        name="redes[twitter]"
+        value="<?php echo $redes->twitter ?? ''; ?>"
         >
         </div>
 
@@ -159,7 +158,7 @@
         class="formulario__input--sociales"
         placeholder="Youtube"
         name="redes[youtube]"
-        value="<?php echo $ponente->youtube ?? ''; ?>"
+        value="<?php echo $redes->youtube ?? ''; ?>"
         >
         </div>
 
@@ -177,7 +176,7 @@
         class="formulario__input--sociales"
         placeholder="IG"
         name="redes[instagram]"
-        value="<?php echo $ponente->instagram ?? ''; ?>"
+        value="<?php echo $redes->instagram ?? ''; ?>"
         >
         </div>
 
@@ -195,7 +194,7 @@
         class="formulario__input--sociales"
         placeholder="Tiktok"
         name="redes[tiktok]"
-        value="<?php echo $ponente->tiktok ?? ''; ?>"
+        value="<?php echo $redes->tiktok ?? ''; ?>"
         >
         </div>
 
@@ -213,7 +212,7 @@
         class="formulario__input--sociales"
         placeholder="Github"
         name="redes[github]"
-        value="<?php echo $ponente->github ?? ''; ?>"
+        value="<?php echo $redes->github ?? ''; ?>"
         >
         </div>
 
