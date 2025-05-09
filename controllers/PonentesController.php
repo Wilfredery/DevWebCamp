@@ -16,6 +16,10 @@ class PonentesController {
 
         $ponentes = Ponente::all();
 
+        if(!isAdmin()) {
+            Header('Location: /login');
+        }
+
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes/conferencistas',
             'ponentes' => $ponentes,
@@ -23,14 +27,18 @@ class PonentesController {
     }
 
     public static function crear(Router $router) {
-        // isSession();
-        // isAuth();
+        if(!isAdmin()) {
+            Header('Location: /login');
+        }
+
         $alertas = [];
 
         $ponente = new Ponente;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+            if(!isAdmin()) {
+                Header('Location: /login');
+            }
             //Leer si hay una imagen
             if(!empty($_FILES['imagen']['tmp_name'])) {
                 
@@ -39,15 +47,15 @@ class PonentesController {
                 if(!is_dir($carpeta_imagenes)) {
                     mkdir($carpeta_imagenes, 0777,true);
                 
+                } 
+
+                $imagen_png = Image::make($_FILES['imagen']['tmp_name'])->fit(800,800)->encode('png', 80);
+                $imagen_webp = Image::make($_FILES['imagen']['tmp_name'])->fit(800,800)->encode('webp', 80);
+
+                $nombre_imagen = md5(uniqid(rand(), true));
+
+                $_POST['imagen'] = $nombre_imagen;
             } 
-
-            $imagen_png = Image::make($_FILES['imagen']['tmp_name'])->fit(800,800)->encode('png', 80);
-            $imagen_webp = Image::make($_FILES['imagen']['tmp_name'])->fit(800,800)->encode('webp', 80);
-
-            $nombre_imagen = md5(uniqid(rand(), true));
-
-            $_POST['imagen'] = $nombre_imagen;
-        } 
             //cONVERTIRLO EN UN STRING EL ARREGLO.
             $_POST['redes'] = json_encode($_POST['redes'], JSON_UNESCAPED_SLASHES);
 
@@ -84,7 +92,9 @@ class PonentesController {
     }
 
     public static function editar (Router $router) {
-
+        if(!isAdmin()) {
+            Header('Location: /login');
+        }
 
         $alertas = [];
         //validar el ID
@@ -105,6 +115,54 @@ class PonentesController {
 
         $ponente->imagen_actual = $ponente->imagen;
 
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!isAdmin()) {
+                Header('Location: /login');
+            }
+
+            //Comrpobar si hay una nueva imagen
+            if(!empty($_FILES['imagen']['tmp_name'])) {
+                
+                $carpeta_imagenes = "../public/img/speakers";
+
+                if(!is_dir($carpeta_imagenes)) {
+                    mkdir($carpeta_imagenes, 0777,true);
+                
+                } 
+
+                $imagen_png = Image::make($_FILES['imagen']['tmp_name'])->fit(800,800)->encode('png', 80);
+                $imagen_webp = Image::make($_FILES['imagen']['tmp_name'])->fit(800,800)->encode('webp', 80);
+
+                $nombre_imagen = md5(uniqid(rand(), true));
+
+                $_POST['imagen'] = $nombre_imagen;
+
+            } else {
+                
+                $_POST['imagen'] = $ponente->imagen_actual;
+            }
+
+            $_POST['redes'] = json_encode($_POST['redes'], JSON_UNESCAPED_SLASHES);
+            $ponente->sincronizar($_POST);
+
+            $alertas = $ponente->validar();
+
+            if(empty($alertas)) {
+                
+                if(isset($nombre_imagen)) {
+                    $imagen_png->save($carpeta_imagenes. '/' . $nombre_imagen. "". '.png');
+
+                    $imagen_png->save($carpeta_imagenes. '/' . $nombre_imagen. "". '.webp');
+                }
+
+                $resultado = $ponente->guardar();
+
+                if($resultado) {
+                    header('Location: /admin/ponentes');
+                }
+            }
+        }
+
         $router->render('admin/ponentes/editar', [
             'titulo' => 'Actualizar ponente',
             'alertas' => $alertas,
@@ -112,4 +170,32 @@ class PonentesController {
             'redes' => json_decode($ponente->redes)///De string a objeto
         ]);
     } 
+
+    public static function eliminar() {
+        if(!isAdmin()) {
+            Header('Location: /login');
+        }
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!isAdmin()) {
+                Header('Location: /login');
+            }
+            
+            $id = $_POST['id'];
+            $ponente = Ponente::find($id);
+
+            if(!isset($ponente)) {
+                Header('Location: /admin/ponentes');
+            }
+
+            $resultado = $ponente->eliminar();
+
+            if($resultado) {
+                Header('Location: /admin/ponentes');
+            }
+
+            
+        }
+
+    }
 }

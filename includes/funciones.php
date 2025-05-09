@@ -13,17 +13,27 @@ function s($html) : string {
 
 // Escapa / Sanitizar el HTML
 // Función que revisa que el usuario este autenticado
-function isAuth() : void {
-    if(!isset($_SESSION['login'])) {
-        header('Location: /');
-    }
+// function isAuth() : void {
+//     if(!isset($_SESSION['login'])) {
+//         header('Location: /');
+//     }
+// }
+
+function isAuth() : bool {
+    session_start();
+    return isset($_SESSION['nombre']) && !empty($_SESSION);
 }
 
-function isSession() : void {
-    if(!isset($_SESSION)) {
-        session_start();
-    }
+function isAdmin() : bool {
+    session_start();
+    return isset($_SESSION['admin']) && !empty($_SESSION['admin']);
 }
+
+// function isSession() : void {
+//     if(!isset($_SESSION)) {
+//         session_start();
+//     }
+// }
 
 function pagina_actual($path) : bool {
     return str_contains($_SERVER['PATH_INFO'], $path) ? true : false;

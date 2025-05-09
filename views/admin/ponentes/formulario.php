@@ -88,7 +88,7 @@
 
     <div class="formulario__campo">
 
-        <label for="pais" class="formulario__label">Areas de experiencias</label>
+        <label for="tags_input" class="formulario__label">Areas de experiencias</label>
 
         <input type="text"
         class="formulario__input"
@@ -97,12 +97,12 @@
         >
     </div>
 
-    <div id="tags" class="formulario__listado">
+    <div id="tags" class="formulario__listado"></div>
 
         <input type="hidden" 
         name="tags"  
         value="<?php echo $ponente->tags ?? ''; ?>">
-    </div>
+    
 
 </fieldset>
 
