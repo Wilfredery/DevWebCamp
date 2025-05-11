@@ -3,7 +3,10 @@
 namespace Controllers;
 
 use MVC\Router;
+
 use Classes\Email;
+use Classes\Paginacion;
+use GuzzleHttp\Psr7\Header;
 use Model\Ponente;
 use Model\Usuario;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -11,8 +14,21 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class PonentesController {
     public static function index(Router $router) {
-        // isSession();
-        // isAuth();}
+        
+        $pagina_Actual = $_GET['page'];
+        $pagina_actual = filter_var($pagina_Actual, FILTER_VALIDATE_INT);
+
+        if(!$pagina_Actual || $pagina_Actual < 1) {
+            Header('Location: /admin/ponentes?page=1');        
+        }
+
+        $registros_por_pagina = 10;
+
+        $total = Ponente::total();
+
+        $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total);
+        
+        debuguear($paginacion->pagina_siguiente());
 
         $ponentes = Ponente::all();
 
