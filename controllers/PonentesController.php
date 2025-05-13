@@ -14,6 +14,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class PonentesController {
     public static function index(Router $router) {
+        if(!isAdmin()) {
+            Header('Location: /login');
+        }
         
         $pagina_Actual = $_GET['page'];
         $pagina_actual = filter_var($pagina_Actual, FILTER_VALIDATE_INT);
@@ -22,23 +25,26 @@ class PonentesController {
             Header('Location: /admin/ponentes?page=1');        
         }
 
-        $registros_por_pagina = 10;
+        $registros_por_pagina = 4;
 
         $total = Ponente::total();
 
         $paginacion = new Paginacion($pagina_actual, $registros_por_pagina, $total);
         
-        debuguear($paginacion->pagina_siguiente());
+        if($paginacion->totalPagina() < $pagina_Actual) {
+            Header('Location: /admin/ponentes?page=1');  
+        } 
 
-        $ponentes = Ponente::all();
 
-        if(!isAdmin()) {
-            Header('Location: /login');
-        }
+        //debuguear($paginacion->pagina_siguiente());
 
+        $ponentes = Ponente::paginar($registros_por_pagina, $paginacion->offset());
+
+  
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes/conferencistas',
             'ponentes' => $ponentes,
+            'paginacion' => $paginacion->paginacion(),
         ]);
     }
 

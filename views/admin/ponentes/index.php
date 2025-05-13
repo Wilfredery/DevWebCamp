@@ -65,8 +65,12 @@
     <?php } else { ?>
         <p class="text-center">No existe un ponente aun.</p>
 
-
-
     <?php } ?>
 
 </div>
+
+<?php 
+
+        echo $paginacion;
+
+?>
