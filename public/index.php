@@ -46,6 +46,9 @@ $router->post('/admin/ponentes/editar', [PonentesController::class, 'editar']);
 $router->post('/admin/ponentes/eliminar', [PonentesController::class, 'eliminar']);
 
 $router->get('/admin/eventos', [EventosController::class, 'index']);
+$router->get('/admin/eventos/crear', [EventosController::class, 'crear']);
+
+
 $router->get('/admin/registrados', [registradosController::class, 'index']);
 $router->get('/admin/regalos', [RegalosController::class, 'index']);
 
