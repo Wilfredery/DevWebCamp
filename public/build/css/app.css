@@ -412,20 +412,23 @@ h3 {
   font-size: 2rem;
   font-weight: 700;
 }
-.formulario__input, .formulario__input--sociales {
+.formulario__input, .formulario__input--sociales, .formulario__select--sociales, .formulario__select {
   display: flex;
   font-size: 1.8rem;
-  color: rgba(26, 27, 21, 0.8);
   border: 1px solid rgb(176.6, 199, 221.4);
   border-radius: 0.5rem;
 }
-.formulario__input--file {
+.formulario__input--file, .formulario__select--file {
   border: none;
 }
-.formulario__input--sociales {
+.formulario__input--sociales, .formulario__select--sociales {
   flex: 1;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+.formulario__radio {
+  display: flex;
+  gap: 2rem;
 }
 .formulario__texto {
   margin-top: 3rem;
@@ -461,6 +464,7 @@ h3 {
   text-align: center;
   width: 100%;
   display: inline-block;
+  margin-top: 2rem;
   width: auto;
   align-self: flex-start;
 }
@@ -484,6 +488,36 @@ h3 {
   color: #1a1b15;
   font-size: 1.4rem;
   font-weight: 300;
+}
+
+.horas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  padding: 1rem;
+}
+@media (min-width: 768px) {
+  .horas {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.horas__hora {
+  color: #007df4;
+  border: 1px solid #007df4;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+.horas__hora:hover {
+  cursor: pointer;
+  background-color: #007df4;
+  color: #FFFFFF;
+  font-weight: 700;
 }
 
 .header {
@@ -571,6 +605,7 @@ h3 {
   text-align: center;
   width: 100%;
   display: inline-block;
+  margin-top: 2rem;
   margin: 2rem 0;
   font-size: 2rem;
   font-weight: 700;
@@ -867,6 +902,7 @@ h3 {
   text-align: center;
   width: 100%;
   display: inline-block;
+  margin-top: 2rem;
   text-transform: uppercase;
   font-size: 1.4rem;
 }

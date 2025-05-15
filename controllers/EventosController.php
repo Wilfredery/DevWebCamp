@@ -2,9 +2,13 @@
 
 namespace Controllers;
 
-use Classes\Email;
-use Model\Usuario;
+
 use MVC\Router;
+use Classes\Email;
+use Model\Categoria;
+use Model\Dia;
+use Model\Hora;
+use Model\Usuario;
 
 class EventosController {
     public static function index(Router $router) {
@@ -20,9 +24,16 @@ class EventosController {
 
         $alertas = [];
 
+        $categorias = Categoria::all();
+        $dias = Dia::all('ASC');
+        $horas = Hora::all('ASC');
+
         $router->render('admin/eventos/crear', [
             'titulo' => 'crear Conferencias y workshops',
             'alertas' => $alertas,
+            'categorias' => $categorias,
+            'dias' => $dias,
+            'horas' => $horas,
         ]);
     }
 }
