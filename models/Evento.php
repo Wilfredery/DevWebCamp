@@ -21,9 +21,10 @@
             $this->nombre = $args['nombre'] ?? '';
             $this->descripcion = $args['descripcion'] ?? '';
             $this->disponibles = $args['disponibles'] ?? '';
-            $this->categoria_id = $args['categoria_id'] ?? null;
-            $this->hora_id = $args['hora_id'] ?? null;
-            $this->ponente_id = $args['ponente_id'] ?? null;
+            $this->categoria_id = $args['categoria_id'] ?? '';
+            $this->dia_id = $args['dia_id'] ?? '';
+            $this->hora_id = $args['hora_id'] ?? '';
+            $this->ponente_id = $args['ponente_id'] ?? '';
         }
 
         // Mensajes de validación para la creación de un evento
