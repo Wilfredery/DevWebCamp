@@ -24,5 +24,25 @@
             color: v.$blanco;
             font-weight: v.$bold;
         }
+
+        &--seleccionada {
+            @extend .horas__hora;
+            background-color: v.$azul;
+            color: v.$blanco;
+            font-weight: v.$bold;
+        }
+
+        &--deshabilitada {
+            @extend .horas__hora;
+            border: 1px solid v.$gris;
+            color: v.$gris;
+            opacity: .5;
+
+            &:hover {
+                cursor: not-allowed;
+                background-color: v.$blanco;
+                color: v.$gris;
+            }
+        }
     }
 }
