@@ -21,6 +21,15 @@
         function terminoBusqueda(e) {
             busqueda[e.target.name] = e.target.value;
 
+            //Reiniciar los campos ocultos y el selector de horas.
+            inputHiddenHora.value = '';
+            inputHiddenDia.value = '';
+            const horaPrevia = document.querySelector('.horas__hora--seleccionada');
+
+            if(horaPrevia) {
+                horaPrevia.classList.remove('horas__hora--seleccionada');
+            }
+
             //Si al menos uno de los dos campos de busqueda esta vacio, se detiene la ejecucion.
             if(Object.values(busqueda).includes('')) {
                 return;
@@ -45,10 +54,15 @@
         }
 
         function obtenerHorasDisponibles(eventos) {
+            //Reiniciar las horas
+            const listadoHoras = document.querySelectorAll('#horas li'); 
+            listadoHoras.forEach(li => {
+                li.classList.add('horas__hora--deshabilitada');
+            });
 
             //Comprobar eventos ya tomados y quitar la variable de deshabilitado.
             const horasTomadas = eventos.map(evento => evento.hora_id);
-            const listadoHoras = document.querySelectorAll('#horas li'); 
+            
             const listadoHorasArray = Array.from(listadoHoras);
 
             //El signo de exclamacion fue utilizado para que en vez de traer lo mencionado que traiga los no mencionados o tomados.
@@ -77,6 +91,9 @@
             e.target.classList.add('horas__hora--seleccionada');
 
             inputHiddenHora.value = e.target.dataset.horaId;
+
+            //Llenar el campo oculto de dia.
+            inputHiddenDia.value = document.querySelector('[name="dia"]:checked').value;
         }
     }
 
