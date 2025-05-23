@@ -15,6 +15,12 @@
         public $hora_id;
         public $ponente_id;
 
+        // Para mostrar el nombre de la categoria, dia y hora
+        public $categoria;
+        public $dia;
+        public $hora;
+        public $ponente;
+
         public function __construct($args=[])
         {
             $this->id = $args['id'] ?? null;
