@@ -4,11 +4,6 @@
     
     if(horas) {
 
-        let busqueda = {
-            categoria_id : '',
-            dia          : '',
-        }
-
         const categoria = document.querySelector('[name="categoria_id"]');
         const dias = document.querySelectorAll('[name="dia"]');
         const inputHiddenDia = document.querySelector('[name="dia_id"]');
@@ -17,6 +12,30 @@
 
         categoria.addEventListener('change', terminoBusqueda);
         dias.forEach(dia => dia.addEventListener('change', terminoBusqueda));
+
+        let busqueda = {
+            //sI QUIERES QUE EL VALOR QUE ESTA AL MACENADO EN CATEGORIA SE VEA COMO UN ENTERO COLOCALE UN + Y YA.
+            categoria_id : +categoria.value || '',
+            dia          : +inputHiddenDia.value || '',
+        }
+
+        //Si al menos uno de los dos campos de busqueda esta vacio, se detiene la ejecucion.
+        if(!Object.values(busqueda).includes('')) {
+
+            ( async () => {
+                await buscarEventos();
+
+                //Resaltar la hora actual
+                const horaSeleccionada = document.querySelector(`[data-hora-id="${inputHiddenHora.value}"]`);
+
+                horaSeleccionada.classList.remove('horas__hora--deshabilitada');
+                horaSeleccionada.classList.add('horas__hora--seleccionada');
+
+                horaSeleccionada.onclick - seleccionarHora;
+            })();
+
+        }
+
 
         function terminoBusqueda(e) {
             busqueda[e.target.name] = e.target.value;
