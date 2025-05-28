@@ -194,9 +194,6 @@ class PonentesController {
     } 
 
     public static function eliminar() {
-        if(!isAdmin()) {
-            Header('Location: /login');
-        }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(!isAdmin()) {
