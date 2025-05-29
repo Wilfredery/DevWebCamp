@@ -20,7 +20,8 @@ class PaginasController {
         
 
         $router->render('paginas/devwebcamp', [
-            'titulo' => 'sobre DevWebCamp'
+            'titulo' => 'sobre DevWebCamp',
+            'descripcion' => 'Conoce la conferencia de desarrollo web más grande de Latinoamérica, DevWebCamp.'
         ]);
     }
 
@@ -28,8 +29,9 @@ class PaginasController {
 
         
 
-        $router->render('paginas/devwebcamp', [
-            'titulo' => 'Paquetes DevWebCamp'
+        $router->render('paginas/paquetes', [
+            'titulo' => 'Paquetes DevWebCamp',
+            'descripcion' => 'Compara los paquetes de DevWebCamp y elige el que mejor se adapte a tus necesidades.'
         ]);
     }
 

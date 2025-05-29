@@ -17,7 +17,11 @@ h3 {
 .text-center {
     text-align: center;
 }
-
+//Cuando el o los selectores termine en __ aplica lo que tiene dentro.
 [class$="__heading"] {
     @include m.nombre-pagina;
+}
+
+[class$="__descripcion"] {
+    @include m.descripcion-pagina;
 }
