@@ -1,0 +1,36 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.agenda {
+
+    padding: 5rem 0;
+    @include m.contenedor;
+
+    &__heading {
+        
+    }
+}
+
+.eventos {
+    $modificador: &;
+
+    &__heading {
+        color: v.$azul;
+        margin: 5rem 0;
+        font-size: clamp(2rem, -0.8rem + 8vw, 6rem);
+    }
+
+    &__fecha {
+        color: v.$gris;
+        font-size: 1.6rem;
+        margin: 2rem 0 1rem 0;
+    }
+
+    &--workshops {
+        //interpolacion de variables
+        #{$modificador}__heading {
+            color: v.$secundario;
+        }
+    }
+}
