@@ -68,8 +68,6 @@ class PaginasController {
             if($evento->dia_id == '2' && $evento->categoria_id == '2') {
                 $eventos_formateados['workshops_sabado'][] = $evento;
             }
-
-            debuguear($eventos_formateados);
         }
 
         $router->render('paginas/conferencias', [
