@@ -33,6 +33,13 @@
             color: v.$secundario;
         }
     }
+
+    .swiper-button-next, .swiper-button-prev  {
+        color: rgba(v.$blanco, .5);
+        &:hover {
+            color: v.$secundario;
+        }
+    }
 }
 
 .evento {
@@ -51,6 +58,12 @@
         &:hover {
             background-color: color.adjust(v.$azul, $lightness: -10%);
         }
+    }
+
+    &__nombre {
+        font-size: 2.4rem;
+        font-weight: v.$bold;
+        margin-bottom: 1rem;
     }
 
     &__introduccion {

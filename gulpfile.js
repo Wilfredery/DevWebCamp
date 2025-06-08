@@ -40,10 +40,6 @@ function css() {
 function javascript() {
     return src(paths.js)
 
-        .pipe(webpack({
-            mode: 'production',
-            entry: './src/js/app.js',
-        }))
         .pipe( webpack({
             module: {
                 rules: [
