@@ -32,6 +32,14 @@
         #{$modificador}__heading {
             color: v.$secundario;
         }
+
+        .evento__informacion {
+            background-color: v.$secundario;
+
+            &:hover {
+                background-color: color.adjust(v.$secundario, $lightness: -10%);
+            }
+        }
     }
 
     .swiper-button-next, .swiper-button-prev  {

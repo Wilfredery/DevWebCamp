@@ -58,7 +58,7 @@ class PaginasController {
             }
 
             if($evento->dia_id == '2' && $evento->categoria_id == '1') {
-                $eventos_formateados['conferencias_sabado'][] = $evento;
+                $eventos_formateados['conferencias_sabados'][] = $evento;
             }
 
             if($evento->dia_id == '1' && $evento->categoria_id == '2') {
@@ -66,7 +66,7 @@ class PaginasController {
             }
 
             if($evento->dia_id == '2' && $evento->categoria_id == '2') {
-                $eventos_formateados['workshops_sabado'][] = $evento;
+                $eventos_formateados['workshops_sabados'][] = $evento;
             }
         }
 
