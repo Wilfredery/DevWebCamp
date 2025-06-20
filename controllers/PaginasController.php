@@ -42,17 +42,22 @@ class PaginasController {
         }
 
         //Obtener el total de cada bloque
-        $ponentes = Ponente::total();
-        $conferencias = Evento::total('categoria_id', 1);
-        $workshops = Evento::total('categoria_id', 2);
+        $ponentes_total = Ponente::total();
+        $conferencias_total = Evento::total('categoria_id', 1);
+        $workshops_total = Evento::total('categoria_id', 2);
+
+        //Mostrar todos los ponentes
+        $ponentes = Ponente::all();
 
         $router->render('paginas/index', [
             'titulo' => 'inicio',
             'eventos' => $eventos_formateados,
             'descripcion' => 'DevWebCamp es una conferencia de desarrollo web que reúne a expertos y entusiastas del sector para compartir conocimientos, experiencias y tendencias en el mundo del desarrollo web.',
-            'ponentes' => $ponentes,
-            'conferencias' => $conferencias,
-            'workshops' => $workshops
+            'ponentes_total' => $ponentes_total,
+            'conferencias_total' => $conferencias_total,
+            'workshops_total' => $workshops_total,
+            'ponentes' => $ponentes
+            
         ]);
     }
 

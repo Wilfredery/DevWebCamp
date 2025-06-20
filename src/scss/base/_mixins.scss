@@ -111,10 +111,9 @@
 }
 
 @mixin menu-social($color, $size) {
-    
+ 
     &__enlace {
-
-
+ 
         &::before {
             color: $color;
             font-size: $size;
@@ -122,33 +121,30 @@
             font-style: normal;
             text-rendering: auto;
             -webkit-font-smoothing: antialiased;
-            font-family: 'Font awesome 6 Brands';
+            font-family: "Font Awesome 6 Brands";
         }
-
-        &[href*="https://www.facebook.com/"]::before {
-            content: "\f09a";
+ 
+        &[href*="facebook.com"]::before {
+            content: "\f39e";
         }
-        &[href*="https://www.instagram.com/"]::before {
-            content: "\f16d";
+        &[href*="github.com"]::before {
+            content: "\f09b";
         }
-
-        &[href*="https://www.youtube.com/"]::before {
-            content: "\f167";
-        }
-
-        &[href*="https://x.com/"]::before {
-            content: "\f099";
-        }
-        &[href*="https://www.tiktok.com/explore"]::before {
+        
+        &[href*="tiktok.com"]::before {
             content: "\e07b";
         }
-
-        &[href*="https://github.com/Wilfredery"]::before {
-            content: "\f092";
+        &[href*="instagram.com"]::before {
+            content: "\f16d";
         }
-
+        &[href*="youtube.com"]::before {
+            content: "\f167";
+        }
+        &[href*="twitter.com"]::before {
+            content: "\f099";
+        }
     }
-
+ 
     &__ocultar {
         display: none;
     }
