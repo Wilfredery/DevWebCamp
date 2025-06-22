@@ -116,3 +116,6 @@
     </div>
 
 </section>
+
+<!-- Apartado del mapa -->
+ <div id="mapa" class="mapa"></div>
