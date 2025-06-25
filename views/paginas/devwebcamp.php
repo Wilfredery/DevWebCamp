@@ -3,7 +3,7 @@
     <p class="devwebcamp__descripcion"><?php echo $descripcion; ?></p>
 
     <div class="devwebcamp__grid">
-        <div class="devwebcamp__imagen">
+        <div data-aos="<?php aos_animacion(); ?>" class="devwebcamp__imagen">
             <picture>
                 <source srcset="/build/img/sobre_devwebcamp.avif" type="image/avif">
                 <source srcset="/build/img/sobre_devwebcamp.webp" type="image/webp">
@@ -11,11 +11,11 @@
             </picture>
         </div>
 
-        <div class="devwebcamp__contenido">
+        <div  class="devwebcamp__contenido">
 
-            <p class="devwebcamp__texto">DevWebCamp es un evento único que reúne a los mejores expertos en desarrollo web para compartir sus conocimientos y experiencias.</p>
+            <p data-aos="<?php aos_animacion(); ?>" class="devwebcamp__texto">DevWebCamp es un evento único que reúne a los mejores expertos en desarrollo web para compartir sus conocimientos y experiencias.</p>
 
-            <p class="devwebcamp__texto">DevWebCamp es un evento único que reúne a los mejores expertos en desarrollo web para compartir sus conocimientos y experiencias.</p>
+            <p data-aos="<?php aos_animacion(); ?>" class="devwebcamp__texto">DevWebCamp es un evento único que reúne a los mejores expertos en desarrollo web para compartir sus conocimientos y experiencias.</p>
 
         </div>
     </div>

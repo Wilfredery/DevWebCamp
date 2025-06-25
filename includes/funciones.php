@@ -42,3 +42,18 @@ function isAdmin() : bool {
 function pagina_actual($path) : bool {
     return str_contains($_SERVER['PATH_INFO'] ?? '/', $path) ? true : false;
 }
+
+function aos_animacion() : void {
+    // $efectos = [];
+    // $efectos[] = 'fade-up';
+    // $efectos[] = 'fade-down';
+    // $efectos[] = 'fade-left';
+    // $efectos[] = 'fade-right';
+
+    $efectos = ['fade-up', 'fade-down', 'fade-left', 'fade-right', 'zoom-in', 'zoom-out', 'zoom-in-up', 'zoom-out-down', 'flip-up', 'flip-down', 'flip-left', 'flip-right'
+    ];
+    $efecto = array_rand($efectos, 1);
+
+    echo $efectos[$efecto];
+
+}

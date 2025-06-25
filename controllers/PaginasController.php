@@ -117,4 +117,11 @@ class PaginasController {
             'eventos' => $eventos_formateados
         ]);
     }
+
+    public static function error(Router $router) {
+        $router->render('paginas/error', [
+            'titulo' => 'Página no encontrada',
+            'descripcion' => 'La página que estás buscando no existe o ha sido movida.'
+        ]);
+    }
 }

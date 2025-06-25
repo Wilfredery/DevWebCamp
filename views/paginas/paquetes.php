@@ -3,7 +3,7 @@
     <p class="paquetes__descripcion"><?php echo $descripcion; ?></p>
 
     <div class="paquetes__grid">
-        <div class="paquete">
+        <div data-aos="<?php aos_animacion(); ?>" class="paquete">
 
             <h3 class="paquete__nombre">Pase gratis</h3>
             <ul class="paquete__lista">
@@ -13,7 +13,7 @@
             <p class="paquete__precio">$0</p>
         </div>
 
-        <div class="paquete">
+        <div data-aos="<?php aos_animacion(); ?>" class="paquete">
 
             <h3 class="paquete__nombre">Pase presencial</h3>
             <ul class="paquete__lista">
@@ -28,7 +28,7 @@
             <p class="paquete__precio">$199</p>
         </div>
 
-        <div class="paquete">
+        <div data-aos="<?php aos_animacion(); ?>" class="paquete">
 
             <h3 class="paquete__nombre">Pase virtual</h3>
             <ul class="paquete__lista">
