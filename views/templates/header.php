@@ -3,7 +3,7 @@
         <nav class="header__navegacion">
 
             <?php if(isAuth()) {?>
-                <a href="<?php echo is_admin() ? '/admin/dashboard' : '/finalizar-registro'; ?>" class="header__enlace">Administrar</a>
+                <a href="<?php echo isAdmin() ? '/admin/dashboard' : '/finalizarRegistro'; ?>" class="header__enlace">Administrar</a>
 
                 <form method="POST" action="/logout" class="header__form">
                     <input type="submit" value="Cerrar sesion" class="header__submit">
@@ -18,7 +18,7 @@
         </nav>
 
         <div class="header__contenido">
-            <a href="">
+            <a href="/">
                 <h1 class="header__logo">
                     &#60DevWebCamp />
                 </h1>
@@ -34,7 +34,7 @@
 
 <div class="barra">
     <div class="barra__contenido">
-        <a href="" class="barra__logo">
+        <a href="/" class="barra__logo">
             <h2 class="barra__logo">
                 &#60DevWebCamp />
             </h2>

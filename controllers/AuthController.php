@@ -36,9 +36,11 @@ class AuthController {
 
                         //redireccion
                         if($usuario->admin) {
+                            
                             header('Location: /admin/dashboard');
                         } else {
-                            header('Location: /finalizar-registro');
+                            
+                            header('Location: /finalizarRegistro');
                         }
                     } else {
                         Usuario::setAlerta('error', 'Password Incorrecto');
