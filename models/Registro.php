@@ -13,6 +13,9 @@ class Registro extends ActiveRecord {
     public $token;
     public $usuario_id;
 
+    public $paquete; // Relación con Paquete
+    public $usuario; // Relación con Usuario
+
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;

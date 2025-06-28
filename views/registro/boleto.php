@@ -4,7 +4,7 @@
 
     <div class="boleto-virtual">
 
-        <div class="boleto boleto--<?php echo strtolower($registro->paquete->nombre) ?>">
+        <div class="boleto boleto--<?php echo strtolower($registro->paquete->nombre) ?> boleto--acceso">
             <div class="boleto__contenido">
                 <h4 class="boleto__logo">&#60DevWebCamp /></h4>
                 <p class="boleto__plan"><?php echo $registro->paquete->nombre ?></p>
