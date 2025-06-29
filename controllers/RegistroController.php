@@ -10,6 +10,18 @@ use Model\Usuario;
 class RegistroController {
     public static function crear(Router $router) {
 
+        if(!isAuth()) {
+            // Si el usuario no está autenticado, redirigir a la página de inicio de sesión
+            header('Location: /login');
+        }
+
+        //Verificar si el usuario eligió un plan
+        $registro = Registro::where('usuario_id', $_SESSION['id']);
+        if(isset($registro) && $registro->paquete_id === 3) {
+            // Si el usuario ya tiene un registro con un paquete, redirigir a la página de boleto
+            header('Location: /boleto?id=' . urlencode($registro->token));
+        }
+
         $router->render('registro/crear', [
             'titulo' => 'Finalizar registro',
             'descripcion' => 'Completa tu registro para acceder a los eventos y ponentes'
@@ -23,6 +35,13 @@ class RegistroController {
                 // Si el usuario ya está autenticado, redirigir a la página de inicio
                 header('Location: /login');
             } 
+            //Verificar si el usuario eligió un plan
+            $registro = Registro::where('usuario_id', $_SESSION['id']);
+            if(isset($registro) && $registro->paquete_id === 3) {
+                // Si el usuario ya tiene un registro con un paquete, redirigir a la página de boleto
+                header('Location: /boleto?id=' . urlencode($registro->token));
+            }
+
 
             //Substr dice que tome una cadena de texto y la recorte a 8 caracteres
             $token = substr(md5(uniqid(rand(), true)), 0, 8);
