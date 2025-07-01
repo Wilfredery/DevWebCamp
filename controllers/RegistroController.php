@@ -92,4 +92,35 @@ class RegistroController {
         ]);
     }
 
+    public static function pagar(Router $router) {
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!isAuth()) {
+                // Si el usuario ya está autenticado, redirigir a la página de inicio
+                header('Location: /login');
+            } 
+
+            //Validar que el POST no quede vacio
+            if(empty($_POST)) {
+                echo json_encode([]);
+                return;
+            }
+
+            //Crear registro
+            $datos = $_POST;
+            $datos['token'] = substr(md5(uniqid(rand(), true)), 0, 8);
+            $datos['usuario_id'] = $_SESSION['id']; // ID del usuario autenticado
+           try {
+            $registro = new Registro($datos);
+            $resultado = $registro->guardar();
+            echo json_encode($resultado);
+           } catch (\Throwable $th) {
+                // Manejar el error de la transacción
+                echo json_encode([
+                    'error' => 'Error al procesar el pago.'
+                ]);
+           }
+        }
+    }
+
 }

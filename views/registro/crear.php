@@ -76,17 +76,21 @@
  
         onApprove: function(data, actions) {
           return actions.order.capture().then(function(orderData) {
- 
-            // Full available details
-            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
- 
-            // Show a success message within this page, e.g.
-            const element = document.getElementById('paypal-button-container');
-            element.innerHTML = '';
-            element.innerHTML = '<h3>Thank you for your payment!</h3>';
- 
-            // Or go to another URL:  actions.redirect('thank_you.html');
-            
+            const datos = new FormData()
+            datos.append('paquete_id', orderData.purchase_units[0].description); // ID del paquete presencial
+            datos.append('pago_id', orderData.purchase_units[0].payments.captures[0].id); // ID del pago
+
+
+            fetch('/finalizarRegistro/pagar', {
+              method: 'POST',
+              body: datos
+            })
+            .then( respuesta => respuesta.json())
+            .then( resultado => {
+              if(resultado.resultado) {
+                actions.redirect(window.location.href = '/finalizarRegistro/conferencias');
+              }
+            })
           });
         },
  
