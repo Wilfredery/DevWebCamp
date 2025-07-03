@@ -8,6 +8,7 @@
 
     @include m.tablet {
         display: flex;
+        align-items: flex-start;
         gap: 2rem;
     }
 
@@ -25,18 +26,43 @@
     }
 
     &__heading {
-        &--conferencias {
+
+        &--conferencias, &--workshops {
             white-space: nowrap;
-            color: v.$azul;
             @include m.texto-fluido(2rem, 5rem);
         }
+        &--conferencias {
+            color: v.$azul;
+        }
+
+        &--workshops {
+            color: v.$secundario;
+        }
+    }
+
+    &__fecha {
+        margin: 6rem 0 3rem 0;
     }
 }
 
 
 
 .registro {
+
+    background-color: v.$gris-claro;
+    padding: 3rem;
+    border-radius: 3rem;
+    
     @include m.tablet {
         flex: 0 0 40%;
+        //Para cuando haga scroll se persiga el TU REGISTRO
+        position: -webkit-sticky;
+        position: sticky;
+        top: 2rem;    
+        //Ve donde esta la tablet de eventos-registros y coloca el align items
+    }
+
+    &__heading {
+        margin: 0 0 3rem 0;
     }
 }
