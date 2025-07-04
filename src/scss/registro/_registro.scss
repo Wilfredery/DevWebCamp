@@ -65,4 +65,31 @@
     &__heading {
         margin: 0 0 3rem 0;
     }
+
+    &__evento {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        //Los que sean pares tendan un color para diferenciar.
+        &:nth-child(even) {
+            background-color: color.adjust(v.$gris-claro, $lightness: -5%);
+        }
+    }
+
+    &__nombre {
+        @include m.texto-fluido(2rem, 3rem);
+        font-weight: v.$bold;
+        margin: 0;
+
+    }
+
+    &__eliminar {
+        all: unset; //Eliminar todo los estilos que tenga
+        color: v.$rojo;
+        &:hover {
+            cursor: pointer;
+
+        }
+    }
 }
