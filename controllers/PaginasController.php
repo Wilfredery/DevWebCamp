@@ -111,10 +111,11 @@ class PaginasController {
             }
         }
 
+        
         $router->render('paginas/conferencias', [
             'titulo' => 'Conferencias & Workshops',
             'descripcion' => 'Talleres y conferencias dictadas por expertos en desarrollo web',
-            'eventos' => $eventos_formateados
+            'eventos' => $eventos_formateados,
         ]);
     }
 

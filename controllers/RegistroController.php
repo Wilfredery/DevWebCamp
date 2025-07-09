@@ -9,6 +9,7 @@ use Model\Hora;
 use MVC\Router;
 use Model\Paquete;
 use Model\Ponente;
+use Model\Regalo;
 use Model\Usuario;
 use Model\Registro;
 
@@ -170,11 +171,12 @@ class RegistroController {
             }
         }
 
-
+        $regalos = Regalo::all('ASC');
         $router->render('registro/conferencias', [
             'titulo' => 'Elige workshop y conferencias',
             'descripcion' => 'Elige hasta 5 eventos para asistir de forma presencial.',
-            'eventos' => $eventos_formateados
+            'eventos' => $eventos_formateados,
+            'regalos' => $regalos
         ]);
     }
 }
