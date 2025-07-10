@@ -172,6 +172,57 @@ class RegistroController {
         }
 
         $regalos = Regalo::all('ASC');
+
+
+        //Manejando el registro mediante $_POST
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+            //Revisar que el usuario este autenticado
+
+            if(!isAuth()) {
+                // Si el usuario no está autenticado, redirigir a la página de inicio de sesión
+                header('Location: /login');
+            }
+
+            $eventos = explode(',', $_POST['eventos']);
+
+            if(empty($eventos)) {
+                echo json_encode(['resultado' => false]);
+                return;
+            }
+
+            //Obtener el registro de usuario
+            $registro = Registro::where('usuario_id', $_SESSION['id']);
+            if(!isset($registro) || $registro->paquete_id !== "1") {
+                echo json_encode(['resultado' => false]);
+                return;
+            }
+
+            $eventos_array = [];
+            //Validar la disponiblidad de los eventos seleccionados
+            foreach($eventos as $evento_id) {
+                $evento = Evento::find($evento_id);
+            }
+
+            //Comprobar que el evento exista
+            if(!isset($evento) || $evento->disponibles === "0") {
+                echo json_encode(['resultado' => false]);
+                return;
+            }
+            //Eventos que existe y hay lugares disponibles.
+            $eventos_array[] = $evento;
+            
+            foreach($eventos_array as $evento) {
+                $evento->disponibles -= 1;
+                $evento->guardar();
+                
+                //Almacenar el registro
+                
+            }
+            
+        }
+
+
         $router->render('registro/conferencias', [
             'titulo' => 'Elige workshop y conferencias',
             'descripcion' => 'Elige hasta 5 eventos para asistir de forma presencial.',
