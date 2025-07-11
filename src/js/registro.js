@@ -123,8 +123,26 @@ import Swal from "sweetalert2";
                 body: datos
             })
             const resultado = await respuesta.json();
-
             console.log(resultado);
+            if(resultado.resultado) {
+                Swal.fire({
+                    title: "Registro Exitoso!",
+                    icon: "success",
+                    draggable: true
+
+                    //Desde que el usuario presione el boton que ejecute la vaina
+                }).then( () => location.href = `/boleto?id=${resultado.token}` )
+
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Hubo un error!",
+
+                    //Desde que el usuario presione el boton que ejecute la vaina
+                    //Esto logrando que si tomamos un evento y llga a cero antes de nosotros tomarlo recargara la pagina.
+                }).then( () => location.reload()); //Esto manda a recargar esta pagina
+            }
         }
     }
 })();
