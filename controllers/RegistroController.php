@@ -20,17 +20,24 @@ class RegistroController {
         if(!isAuth()) {
             // Si el usuario no está autenticado, redirigir a la página de inicio de sesión
             header('Location: /login');
+            return;
         }
 
         //Verificar si el usuario eligió un plan
         $registro = Registro::where('usuario_id', $_SESSION['id']);
-        if(isset($registro) && $registro->paquete_id === 3) {
+
+        //GRATIS = 3 || virtual = 2
+        if(isset($registro) && ($registro->paquete_id === "3" || $registro->paquete_id === "2")) {
             // Si el usuario ya tiene un registro con un paquete, redirigir a la página de boleto
             header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
         }
 
-        if($registro->paquete_id === "1") {
+
+        //PRESENCIAL
+        if(isset($registro) && $registro->paquete_id === "1") {
             header('Location: /finalizarRegistro/conferencias');
+            return;
         }
 
         $router->render('registro/crear', [
@@ -45,12 +52,14 @@ class RegistroController {
             if(!isAuth()) {
                 // Si el usuario ya está autenticado, redirigir a la página de inicio
                 header('Location: /login');
+                return;
             } 
             //Verificar si el usuario eligió un plan
             $registro = Registro::where('usuario_id', $_SESSION['id']);
             if(isset($registro) && $registro->paquete_id === 3) {
                 // Si el usuario ya tiene un registro con un paquete, redirigir a la página de boleto
                 header('Location: /boleto?id=' . urlencode($registro->token));
+                return;
             }
 
 
@@ -81,13 +90,14 @@ class RegistroController {
         $id = $_GET['id'] ?? '';
         if(!$id || !strlen($id) === 8) {
             header('Location: /');
-            
+            return;
         }
 
         //Buscar en la bd
         $registro = Registro::where('token', $id);
         if(!$registro) {
             header('Location: /');
+            return;
             
         }
 
@@ -109,6 +119,7 @@ class RegistroController {
             if(!isAuth()) {
                 // Si el usuario ya está autenticado, redirigir a la página de inicio
                 header('Location: /login');
+                return;
             } 
 
             //Validar que el POST no quede vacio
@@ -139,18 +150,36 @@ class RegistroController {
         if(!isAuth()) {
             // Si el usuario no está autenticado, redirigir a la página de inicio de sesión
             header('Location: /login');
+            return;
         }
 
         //Validar que el usuario tenga el plan presencial.
         $usuario_id = $_SESSION['id'];
         $registro = Registro::where('usuario_id', $usuario_id);
-        if($registro->paquete_id !== "1") {
-            header('Location: /');
+
+        // Aquí validas si el registro se ha completado o no
+        // $registroFinalizado = EventosRegistros::where('registro_id', $registro->id);
+
+        // if(isset($registroFinalizado)) {
+        //     header('Location: /boleto?id=' . urlencode($registro->token));
+        //     return;
+        // }
+        //PARA EL VIRTUAL
+        if(isset($registro) && $registro->paquete_id !== "2") {
+            header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
         }
 
-        //Redirreccionar a boleto virtual en caso de haber finalizado su registro
-        if(isset($registro->regalo_id)) {
+
+        if($registro->paquete_id !== "1") {
+            header('Location: /');
+            return;
+        }
+
+        // Redirreccionar a boleto virtual en caso de haber finalizado su registro
+        if(isset($registro->regalo_id) && $registro->paquete_id !== "1") {
             header('Location: /boleto?id=' . urlencode($registro->token));
+            return;
         }
 
         $eventos = Evento::ordenar('hora_id', 'ASC');
@@ -192,6 +221,7 @@ class RegistroController {
             if(!isAuth()) {
                 // Si el usuario no está autenticado, redirigir a la página de inicio de sesión
                 header('Location: /login');
+                return;
             }
 
             $eventos = explode(',', $_POST['eventos']);

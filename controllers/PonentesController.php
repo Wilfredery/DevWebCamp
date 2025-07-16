@@ -14,9 +14,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class PonentesController {
     public static function index(Router $router) {
-        if(!isAdmin()) {
-            Header('Location: /login');
-        }
+
         
         $pagina_Actual = $_GET['page'];
         $pagina_actual = filter_var($pagina_Actual, FILTER_VALIDATE_INT);
@@ -35,6 +33,9 @@ class PonentesController {
             Header('Location: /admin/ponentes?page=1');  
         } 
 
+        if(!isAdmin()) {
+            Header('Location: /login');
+        }
 
         //debuguear($paginacion->pagina_siguiente());
 

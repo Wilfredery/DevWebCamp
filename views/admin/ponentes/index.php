@@ -54,23 +54,14 @@
                             </form>
                         </td>
                     </tr>
-
                 <?php } ?>
             </tbody>
-
-
         </table>
-
-
     <?php } else { ?>
         <p class="text-center">No existe un ponente aun.</p>
-
     <?php } ?>
-
 </div>
 
 <?php 
-
         echo $paginacion;
-
 ?>

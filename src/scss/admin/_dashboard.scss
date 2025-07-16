@@ -62,7 +62,7 @@
     }
 
     &__enlace {
-        color: color.adjust(v.$gris-oscuro, $lightness: 40);
+        color: color.adjust(v.$gris-oscuro, $lightness: 40%);
         display: flex;
         flex-direction: column;
         align-items: center;
